@@ -1,0 +1,38 @@
+function giveChange(price, payment) {
+    // change is a list of bills being returned as change
+    // order is tens, fives, ones, quarters, dimes, nickels, pennies
+    int[] change = [0,0,0,0,0,0,0];
+
+    float rem = payment - price;
+    while (rem > 0) {
+        if (rem >= 10.00){
+            rem -= 10.00;
+            change[0]++;
+        }
+        elif (rem >= 5.00) {
+            rem -= 5.00;
+            change[1]++;
+        }
+        elif (rem >= 1.00) {
+            rem -= 1.00;
+            change[2]++;
+        }
+        elif (rem >= 0.25) {
+            rem -= 0.25;
+            change[3]++;
+        }
+        elif (rem >= 0.10) {
+            rem -= 0.10;
+            change[4]++;
+        }
+        elif (rem >= 0.05) {
+            rem -= 0.05;
+            change[5]++;
+        }
+        elif (rem >= 0.01) {
+            rem -= 0.01;
+            change[6]++;
+        }
+    }
+    return change;
+}
