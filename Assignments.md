@@ -35,6 +35,13 @@ Details for where to find assignments for each class can be found here.
 ### Homework
 - assigned through Pearson: https://portal.mypearson.com/course-home#/tab/active
 
+### Tests
+- All exams will be assigned through Pearson, just like homework
+
+### Project
+- Details will be announced at a later date
+
+
 <br/>
 
 ---

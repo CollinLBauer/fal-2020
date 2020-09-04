@@ -7,6 +7,7 @@ https://portal.mypearson.com/course-home
 **Dates**
 - 08/27
 - 09/01
+- 09/03
 
 ---
 
@@ -144,3 +145,34 @@ Stems | Leaves
     8 | 0 1 3 5 6 7 9
     9 | 5 8 9 9
 ```
+
+...
+
+### Distribution of a Data Set
+The **distribution of a data set** is a table, graph, or formula yhtat provides the values of the oberservations and how often they occur.
+
+
+### Modality
+**Modality** describes the distribution groupings of a data set by the number of "peaks"
+- Unimodal (one peak)
+- Bimodal (two peaks)
+- Multimodal (three or more peaks)
+- Nomodal (no peaks)
+
+### Dystribution symmetry
+
+***Symmetric distributions***:
+- bell-shaped
+- triangular
+- uniform/rectangular (straight line)
+
+Skewed distributions:
+- Right-skewed (higher rate on the *left* side; longer right tail)
+- Left-skewed (higher rate on the *right* side; longer left tail)
+
+Notes:
+- A uniform distribution will always be nomodal.
+
+### Misleading Graphs
+- *Truncation* can lead to gaps appearing greater than they actually are
+- *Improper scaling*, i.e. doubling width & height versus just height
