@@ -114,11 +114,11 @@ Collin Bauer
   - **Required**: no
 - **Primary Key**: guestNo
 
-  <br/>
+<br/>
 
-  ## 3. Schemas, redesigned
+## 3. Schemas, redesigned
 
-  **Table**: Room
+**Table**: Room
 - **Attribute**: roomID
   - **Type**: INTEGER
   - **Required**: yes
