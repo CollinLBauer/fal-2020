@@ -86,3 +86,9 @@ The ***lower limit*** and ***upper limit*** of a dataset are:
 In data analysis, the identification of **outliers** - observations that fall well outside the overall pattern of the data - is important
 
 Observations taht lie below the lower limit or above the upper limit are **potential outliers**
+
+*Go back and rewatch 09/15 lecture.*
+- Test on Tuesday, 09/22
+  - No class
+  - Test on Pearson; make sure you log in on that day to submit
+- Latest homework due Thursday, 09/17
