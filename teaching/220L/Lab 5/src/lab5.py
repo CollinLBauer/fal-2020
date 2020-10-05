@@ -67,3 +67,5 @@ def map_plan():
     # Wait for click to close the window
     win.getMouse()
     win.close()
+
+converter()
