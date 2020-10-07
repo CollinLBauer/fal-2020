@@ -49,3 +49,15 @@ What are the student numbers of all students not yet enrolled in a class?
   {s[STID]|s}
 - SQL:
   (SELECT SID FROM STUDENT) EXCEPT (SELECT STID FROM ENROLLMENT)
+
+
+---
+
+## MID-TERM EXAM
+- assigned today, Tuesdday 10/06
+- Due Friday, 10/09 by 5PM
+- Test is sort of a build-your-own test
+  - must cover certain topics
+  - assign points to questions, and tally up point total
+  - must take approxiamtely 75 minutes to complete
+  - You must *take* your own exam, and presumably give correct answers
