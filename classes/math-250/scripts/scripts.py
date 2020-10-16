@@ -1,6 +1,7 @@
 from sys import argv
 from math import sqrt
 
+OPTIONS = ["mean", "median", "sum", "range", "sstddev", "pstddev", "chev", "sort", "quart", "summary"]
 
 def numbify(values):
     try:
@@ -12,7 +13,7 @@ def numbify(values):
         exit()
 
 
-def mean(values):    
+def mean(values):
     total = 0
     for val in values:
         total += val
@@ -39,6 +40,7 @@ def std_dev(values):
         dev_sum += (x - x_bar) ** 2
     
     return sqrt(dev_sum / (n - 1))
+
 
 def pop_std_dev(values):
     x_bar = mean(values)
@@ -96,14 +98,23 @@ def quartiles(values):
 
     return (Q1, Q2, Q3)
 
+
 def summary(values):
     qt = quartiles(values)
     return (min(values), qt[0], qt[1], qt[2], max(values))
 
+
+def __listOptions__():
+    printStr = "Available options...\n"
+    for option in OPTIONS:
+        printStr += "  " + option + "\n"
+    print(printStr)
+
+
 if __name__ == "__main__":
     if len(argv) < 3:
         print("Invalid syntax.\n"
-              + "Options: mean...")
+        + "Expected usage: python3 scripts.py <option> [-f <filename>|[arguments]]  ")
         exit()
     if argv[2] == "-f":
         with open(argv[3],"r") as file:
@@ -112,34 +123,45 @@ if __name__ == "__main__":
         newargs = argv[2:]
 
     numbify(newargs)
-    if   argv[1] == "mean":
+    if   argv[1] == OPTIONS[0]:
         print("Mean of {} values: {}".format(len(newargs), mean(newargs)))
-    elif argv[1] == "median":
+    
+    elif argv[1] == OPTIONS[1]:
         print("Median of {} values: {}".format(len(newargs), median(newargs)))
-    elif argv[1] == "sum":
+    
+    elif argv[1] == OPTIONS[2]:
         print("Sum of {} values: {}".format(len(newargs), sum(newargs)))
-    elif argv[1] == "range":
+    
+    elif argv[1] == OPTIONS[3]:
         print("Range of given sample: {}".format(max(newargs) - min(newargs)))
-    elif argv[1] == "stddev":
+    
+    elif argv[1] == OPTIONS[4]:
         print("Standard deviation of given sample: {}".format(std_dev(newargs)))
-    elif argv[1] == "popstddev":
+    
+    elif argv[1] == OPTIONS[5]:
         print("Population standard deviation of given sample: {}".format(pop_std_dev(newargs)))
-    elif argv[1] == "chev":
+    
+    elif argv[1] == OPTIONS[6]:
         k = float(input("How many deviations are you checking within? "))
         result = chebychev(newargs, k)
         print("{}% observations lie within {} standard deviations of the mean".format(result[1], k))
-    elif argv[1] == "sort":
+    
+    elif argv[1] == OPTIONS[7]:
         sortNums(newargs)
         print("Result output to out.txt")
-    elif argv[1] == "quart":
+    
+    elif argv[1] == OPTIONS[8]:
         result = quartiles(newargs)
         print("Quartiles of the given set...\n  "
               + "Q1 = {}\n  Q2 = {}\n  Q3 = {}".format(result[0], result[1], result[2]))
-    elif argv[1] == "summary":
+    
+    elif argv[1] == OPTIONS[9]:
         result = summary(newargs)
         print("Summary of the data set: ", end=" ")
         for val in result:
             print(val, end=", ")
         print()
+    
     else:
         print("Not a recognized option.")
+        __listOptions__()
