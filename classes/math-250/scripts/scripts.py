@@ -1,7 +1,8 @@
 from sys import argv
 from math import sqrt
 
-OPTIONS = ["mean", "median", "sum", "range", "sstddev", "pstddev", "chev", "sort", "quart", "summary"]
+OPTIONS = ["mean", "median", "sum", "range", "sstddev", "pstddev", "chev", "sort", "quart", "summary", "rstddev"]
+EXPECTED_USAGE = "Expected usage: python3 scripts.py <option> [-f <filename>|[arguments]]"
 
 def numbify(values):
     try:
@@ -31,6 +32,7 @@ def median(values):
         return values[(len(values)-1)//2]
 
 
+# Sample Standard Deviation
 def std_dev(values):
     x_bar = mean(values)
     n = len(values)
@@ -42,6 +44,7 @@ def std_dev(values):
     return sqrt(dev_sum / (n - 1))
 
 
+# Population Standard Deviation
 def pop_std_dev(values):
     x_bar = mean(values)
     n = len(values)
@@ -51,6 +54,28 @@ def pop_std_dev(values):
         dev_sum += (x - x_bar) ** 2
 
     return sqrt(dev_sum / (n))
+
+
+# Random Variable Standard Deviation
+def rnd_std_dev(values):
+    print("Note: This function expects values in pairs of x and P(X = x).")
+    if len(values) % 2 != 0:
+        print("Invalid values length. Exiting.")
+        exit()
+
+    # find mu
+    mu = 0
+    for i in range(len(values)//2):
+        mu += values[2*i] * values[2*i+1]
+
+    #find summation
+    dev_sum = 0
+    for i in range(len(values)//2):
+        # x = values[2*i]
+        # P(P=x) = values[2*i+1]
+        dev_sum += (values[2*i] - mu)**2 * values[2*i+1]
+
+    return sqrt(dev_sum)
 
 
 def chebychev(values, k):
@@ -71,7 +96,7 @@ def chebychev(values, k):
     return (approx, actual)
 
 
-def sortNums(values):
+def sort_nums(values):
     values.sort()
     with open("out.txt","w") as output:
         for val in values:
@@ -104,7 +129,7 @@ def summary(values):
     return (min(values), qt[0], qt[1], qt[2], max(values))
 
 
-def __listOptions__():
+def __list_options__():
     printStr = "Available options...\n"
     for option in OPTIONS:
         printStr += "  " + option + "\n"
@@ -112,17 +137,32 @@ def __listOptions__():
 
 
 if __name__ == "__main__":
-    if len(argv) < 3:
-        print("Invalid syntax.\n"
-        + "Expected usage: python3 scripts.py <option> [-f <filename>|[arguments]]  ")
+    # catch invalid usage cases
+    if len(argv) < 2:
+        print(EXPECTED_USAGE)
         exit()
+    elif argv[1] == "help":
+        print(EXPECTED_USAGE)
+        __list_options__()
+        exit()
+    elif argv[1] not in OPTIONS:
+        print("Not a recognized option.")
+        __list_options__()
+        exit()
+    elif len(argv) == 2:
+        print("No arguments passed.\n"
+        + EXPECTED_USAGE)
+        exit()
+
+    # read in arguments as numbers
     if argv[2] == "-f":
         with open(argv[3],"r") as file:
             newargs = file.read().split("\n")
     else:
         newargs = argv[2:]
-
     numbify(newargs)
+
+    # run script based on selected option
     if   argv[1] == OPTIONS[0]:
         print("Mean of {} values: {}".format(len(newargs), mean(newargs)))
     
@@ -147,7 +187,7 @@ if __name__ == "__main__":
         print("{}% observations lie within {} standard deviations of the mean".format(result[1], k))
     
     elif argv[1] == OPTIONS[7]:
-        sortNums(newargs)
+        sort_nums(newargs)
         print("Result output to out.txt")
     
     elif argv[1] == OPTIONS[8]:
@@ -161,7 +201,8 @@ if __name__ == "__main__":
         for val in result:
             print(val, end=", ")
         print()
-    
-    else:
-        print("Not a recognized option.")
-        __listOptions__()
+
+    elif argv[1] == OPTIONS[10]:
+        print("Random standard deviation of given pairs: {}".format(rnd_std_dev(newargs)))
+
+    # Done
