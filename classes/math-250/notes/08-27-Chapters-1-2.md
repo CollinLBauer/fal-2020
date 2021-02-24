@@ -103,7 +103,7 @@ A **bar chart** displays the *distinct values* of the qualitative data on a hori
 
 ### Cutpoint Grouping
 - **Lower class cutpoint**: The smallest value that could go in a class
-- **Upper class cutpoint**: The largest alue that could go in the *next-higher* class
+- **Upper class cutpoint**: The largest value that could go in the *next-higher* class
 - **Class width**: The difference between the cutpoints of a class
 - **Class midpoint**: The average of the two cutpoints of a class
 

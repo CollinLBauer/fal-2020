@@ -157,7 +157,7 @@ if __name__ == "__main__":
     # read in arguments as numbers
     if argv[2] == "-f":
         with open(argv[3],"r") as file:
-            newargs = file.read().split("\n")
+            newargs = file.read().split()
     else:
         newargs = argv[2:]
     numbify(newargs)
